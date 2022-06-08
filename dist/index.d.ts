@@ -1,6 +1,7 @@
 import React from "react";
-declare class Car extends React.Component {
-    render(): JSX.Element;
+interface Props {
+    user: string;
 }
+declare const Car: React.FC<Props>;
 export default Car;
 //# sourceMappingURL=index.d.ts.map
