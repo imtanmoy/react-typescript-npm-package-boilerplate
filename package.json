@@ -1,0 +1,40 @@
+{
+  "name": "react-typescript-npm-package-boilerplate",
+  "version": "1.0.0",
+  "author": "Tanmoy Banik",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "scripts": {
+    "clean": "rm -Rf dist",
+    "prebuild": "npm run clean",
+    "build": "rollup -c --environment NODE_ENV:production",
+    "lint": "eslint --ext=tsx ./src ./__tests__",
+    "start": "rollup -cw",
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "22.0.0",
+    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-replace": "4.0.0",
+    "@types/react": "18.0.12",
+    "@types/react-dom": "18.0.5",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "rollup": "2.75.6",
+    "rollup-plugin-analyzer": "4.0.0",
+    "rollup-plugin-delete": "2.0.0",
+    "rollup-plugin-peer-deps-external": "2.2.4",
+    "rollup-plugin-terser": "7.0.2",
+    "rollup-plugin-typescript2": "0.32.1",
+    "typescript": "4.7.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  }
+}
