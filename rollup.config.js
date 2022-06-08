@@ -4,6 +4,9 @@ import external from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import analyze from "rollup-plugin-analyzer";
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
+import scss from "rollup-plugin-scss";
 import commonjs from "@rollup/plugin-commonjs";
 import pkg from "./package.json";
 
@@ -21,6 +24,13 @@ const plugins = [
   replace({ __VERSION__: `'${pkg.version}'`, preventAssignment: true }),
   analyze({ summaryOnly: true }),
   commonjs(),
+  scss({
+    insert: true,
+    processor: (css) =>
+      postcss([autoprefixer])
+        .process(css)
+        .then((result) => result.css),
+  }),
 ];
 
 export default [
