@@ -1,4 +1,5 @@
 import del from 'rollup-plugin-delete';
+import babel from '@rollup/plugin-babel';
 import typescript from 'rollup-plugin-typescript2';
 import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
@@ -22,10 +23,15 @@ const plugins = [
   del({ targets: 'dist/*', runOnce: true }),
   typescript({ useTsconfigDeclarationDir: true }),
   external(),
-  resolve(),
+  resolve({ extensions: ['.ts', '.tsx', '.js', '.jsx'] }),
   replace({ __VERSION__: `'${pkg.version}'`, preventAssignment: true }),
   analyze({ summaryOnly: true }),
   commonjs(),
+  babel({
+    babelHelpers: 'bundled',
+    exclude: './node_modules/**',
+    include: ['src/**'],
+  }),
   scss({
     insert: true,
     processor: (css) =>
