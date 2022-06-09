@@ -1,3 +1,4 @@
-export * from './components/Button';
-export * from './icons/index';
+import Button from './components/Button';
+import Icon from './icons';
+export { Icon, Button };
 //# sourceMappingURL=index.d.ts.map
